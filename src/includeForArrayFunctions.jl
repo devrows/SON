@@ -5,7 +5,7 @@ complementary functions used by mapArrayFunctions.jl
 """
 
 #define test variables
-fileLocation = "/Users/devin-rose92/desktop/SON/SON/maps/LakeHuronGrid1_Depth.csv"
+fileLocation = "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1_Depth.csv"
 habitat_testArray = getindex(Int64,0,220,8,110,37,2,15)
 
 

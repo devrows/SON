@@ -29,7 +29,7 @@ function makeMap(fileLocation::ASCIIString)
     row += 1
     end
 
-  writedlm("/Users/devin-rose92/desktop/SON/SON/maps/numberedMap_array.csv", numberedMap_array,','); #writes out a .csv file for numbered sections
+  writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/numberedMap_array.csv", numberedMap_array,','); #writes out a .csv file for numbered sections
 
   return numberedMap_array
 
@@ -55,7 +55,7 @@ function habitatTypeArray(habitat_testArray::Vector, fileLocation::ASCIIString)
 
   depth_array = maxDepthCheck(depth_array, indexNumber)
 
-  writedlm("/Users/devin-rose92/desktop/SON/SON/maps/habitatType_array.csv", depth_array,','); #writes out a .csv file for habitat types
+  writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/habitatType_array.csv", depth_array,','); #writes out a .csv file for habitat types
 
   return depth_array
 end
