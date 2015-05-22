@@ -59,3 +59,39 @@ function habitatTypeArray(habitat_testArray::Vector, fileLocation::ASCIIString)
 
   return depth_array
 end
+
+
+function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
+  habitat_testArray = sort(habitat_testArray)
+  newDepth_Array = habitatTypeArray(habitat_testArray, fileLocation)
+  boolSpawnArray = Array(Bool, size(newDepth_Array)[1], size(newDepth_Array)[2])
+
+  boolSpawnArray = fillFalse(boolSpawnArray)
+
+  highDepth = highDepthIndex(habitat_testArray)
+
+  lowDepth = lowDepthIndex(habitat_testArray)
+
+  for habitatCheck = lowDepth:highDepth-1
+    for row = 1:size(newDepth_Array)[1]
+      for column = 1:size(newDepth_Array)[2]
+        if newDepth_Array[row, column] == 2
+          boolSpawnArray [row, column] = true
+        end
+      end
+    end
+  end
+
+  writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/booleanSpawningMap.csv", boolSpawnArray,',');
+
+ return boolSpawnArray
+end
+
+
+function drawSpawningArea()
+  x = spawningArray(fileLocation, habitat_testArray)
+
+  Gadfly.set_default_plot_size(10cm, 10cm)
+
+  spy(x)
+end

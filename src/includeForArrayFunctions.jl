@@ -5,9 +5,9 @@ complementary functions used by mapArrayFunctions.jl
 """
 
 #define test variables
+using DataFrames, Distributions, Gadfly, RDatasets, Compose
 fileLocation = "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1_Depth.csv"
 habitat_testArray = getindex(Int64,0,220,8,110,37,2,15)
-
 
 #This function gets rid of all the NaN entries and makes them zero
 function isNanLoop(depth_array::Array, new_array::Array)
@@ -51,7 +51,6 @@ function habitatTypeLoop(habitat_testArray::Vector, depth_array::Array, new_arra
     end
 
   return depth_array
-
 end
 
 #Checks for any depths higher than the max value in the vector
@@ -61,8 +60,8 @@ function maxDepthCheck(depth_array::Array, indexNumber::Int)
 
     while maxCheckRow < size(depth_array)[1]+1
       while maxCheckColumn < size(depth_array)[2]+1
-        if(depth_array[maxCheckRow, maxCheckColumn] > habitat_restArray[indexNumber])
-          depth_array [maxCheckRow, maxCheckColumn] = length(habitat_restArray)
+        if(depth_array[maxCheckRow, maxCheckColumn] > habitat_testArray[indexNumber])
+          depth_array [maxCheckRow, maxCheckColumn] = length(habitat_testArray)
         end
 
         maxCheckColumn += 1
@@ -73,5 +72,35 @@ function maxDepthCheck(depth_array::Array, indexNumber::Int)
     end
 
   return depth_array
+end
 
+function fillFalse(boolSpawnArray::Array)
+
+  for row = 1:size(boolSpawnArray)[1]
+    for column = 1:size(boolSpawnArray)[2]
+      boolSpawnArray [row, column] = false
+    end
+  end
+
+  return boolSpawnArray
+end
+
+function highDepthIndex(habitat_testArray::Vector)
+  highSpawningIndex = 1
+
+  while habitat_testArray[highSpawningIndex] <= 8
+    highSpawningIndex += 1
+  end
+
+  return highSpawningIndex-1
+end
+
+function lowDepthIndex(habitat_testArray::Vector)
+  lowSpawningIndex = 1
+
+  while habitat_testArray[lowSpawningIndex] <= 2
+    lowSpawningIndex += 1
+  end
+
+  return lowSpawningIndex-1
 end
