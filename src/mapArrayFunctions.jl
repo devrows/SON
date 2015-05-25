@@ -88,10 +88,48 @@ function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
 end
 
 
-function drawSpawningArea()
+function drawSpawningArea(fileLocation::ASCIIString, habitat_testArray::Vector)
   x = spawningArray(fileLocation, habitat_testArray)
+  y = habitatTypeArray(habitat_testArray, fileLocation)
+
+  x = fillFalseForSpawningAreas(x)
 
   Gadfly.set_default_plot_size(10cm, 10cm)
 
-  spy(x)
+  spy(y)
+
+  spawnArrayImage = spy(x)
+
+  (size(x)[2])/300
+
+  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/spawningImage.svg", 4inch, 3inch), spawnArrayImage)
+  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 4inch, 3inch), spy(y))
+  return x
+end
+
+function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vector)
+  y = habitatTypeArray(habitat_testArray, fileLocation)
+  x = drawSpawningArea(fileLocation, habitat_testArray)
+
+  for row = 1:(size(y)[1])
+    for column = 1:(size(y)[2])
+      if y [row, column] == 0
+        y [row, column] = 7
+      else
+        y [row, column] = 0
+      end
+    end
+  end
+
+  for row = 1:(size(y)[1])
+    for column = 1:(size(y)[2])
+      if x [row, column] == true
+        y [row, column] = 1
+      end
+    end
+  end
+
+  Gadfly.set_default_plot_size(10cm, 10cm)
+
+  spy(y)
 end

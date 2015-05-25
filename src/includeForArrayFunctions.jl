@@ -4,9 +4,12 @@ Devin Rose
 complementary functions used by mapArrayFunctions.jl
 """
 
+#add package
+Pkg.add("Cairo")
+
 #define test variables
-using DataFrames, Distributions, Gadfly, RDatasets, Compose
-fileLocation = "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1_Depth.csv"
+using DataFrames, Distributions, Gadfly, RDatasets, Compose, Cairo
+fileLocation = "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1x1_Depth.csv"
 habitat_testArray = getindex(Int64,0,220,8,110,37,2,15)
 
 #This function gets rid of all the NaN entries and makes them zero
@@ -83,6 +86,35 @@ function fillFalse(boolSpawnArray::Array)
   end
 
   return boolSpawnArray
+end
+
+function fillFalseForSpawningAreas(boolSpawnArray::Array)
+  y = 195
+  counter = 0
+
+  #for row = 1:(size(boolSpawnArray)[1])/3
+   # for column = 1:size(boolSpawnArray)[2]
+    #  boolSpawnArray [row, column] = false
+    #end
+  #end
+
+  #for row = 1:size(boolSpawnArray)[1]
+   # for column = 1:(size(boolSpawnArray)[2])/1.8
+    #  boolSpawnArray [row, column] = false
+    #end
+  #end
+
+  for row = 195:300
+    for column = convert(Int,(2/5)y+260):size(boolSpawnArray)[2]
+      boolSpawnArray [row, column] = false
+    end
+    counter = counter + 1
+    if counter % 5 == 0
+      y = y + 5
+    end
+  end
+
+  return(boolSpawnArray)
 end
 
 function highDepthIndex(habitat_testArray::Vector)
