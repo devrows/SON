@@ -100,8 +100,6 @@ function drawSpawningArea(fileLocation::ASCIIString, habitat_testArray::Vector)
 
   spawnArrayImage = spy(x)
 
-  (size(x)[2])/300
-
   draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/spawningImage.svg", 4inch, 3inch), spawnArrayImage)
   draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 4inch, 3inch), spy(y))
   return x
