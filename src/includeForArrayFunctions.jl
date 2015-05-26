@@ -128,11 +128,6 @@ function fillFalseForSpawningAreas(boolSpawnArray::Array)
     end
   end
 
-  #This section is used to generate a better image for the shape of the spawning area
-  #for column = 1:size(boolSpawnArray)[2]
-    #boolSpawnArray [1, column] = true
-  #end
-
   return(boolSpawnArray)
 end
 

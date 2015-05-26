@@ -29,8 +29,6 @@ function makeMap(fileLocation::ASCIIString)
     row += 1
     end
 
-  writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/numberedMap_array.csv", numberedMap_array,','); #writes out a .csv file for numbered sections
-
   return numberedMap_array
 
 end
@@ -54,8 +52,6 @@ function habitatTypeArray(habitat_testArray::Vector, fileLocation::ASCIIString)
   end
 
   depth_array = maxDepthCheck(depth_array, indexNumber)
-
-  writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/habitatType_array.csv", depth_array,','); #writes out a .csv file for habitat types
 
   return depth_array
 end
@@ -89,26 +85,9 @@ function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
  return boolSpawnArray
 end
 
-
-function drawSpawningArea(fileLocation::ASCIIString, habitat_testArray::Vector)
-  x = spawningArray(fileLocation, habitat_testArray)
-  y = habitatTypeArray(habitat_testArray, fileLocation)
-
-  Gadfly.set_default_plot_size(10cm, 10cm)
-
-  habitatTypeImage = spy(y)
-
-  spawnArrayImage = spy(x)
-
-  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/spawningImage.svg", 8inch, 8inch), spawnArrayImage)
-  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 8inch, 6inch), habitatTypeImage)
-
-  return x
-end
-
 function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vector)
   y = habitatTypeArray(habitat_testArray, fileLocation)
-  x = drawSpawningArea(fileLocation, habitat_testArray)
+  x = spawningArray(fileLocation, habitat_testArray)
 
   for row = 1:(size(y)[1])
     for column = 1:(size(y)[2])
@@ -128,7 +107,41 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
     end
   end
 
-  Gadfly.set_default_plot_size(10cm, 10cm)
+  return y
+end
 
-  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/shorelineWithSpawning.svg", 8inch, 6inch), spy(y))
+function coolingWaterIntakeLocation(fileLocation::ASCIIString, habitat_testArray::Vector)
+  ID_array = makeMap(fileLocation)
+
+  boolIntakeLocation_array = Array(Bool, size(ID_array)[1], size(ID_array)[2])
+  boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
+
+  boolIntakeLocation_array[339, 327] = true
+  boolIntakeLocation_array[338, 328] = true
+  boolIntakeLocation_array[338, 327] = true
+
+  return boolIntakeLocation_array
+end
+
+function coolingWaterVisualization(fileLocation::ASCIIString, habitat_testArray::Vector)
+  ID_array = makeMap(fileLocation)
+  x = shorelineWithSpawning(fileLocation, habitat_testArray)
+
+  boolIntakeLocation_array = Array(Bool, size(ID_array)[1], size(ID_array)[2])
+  boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
+
+  x[339, 329] = 4 #Bruce Power location
+  x[339, 327] = 8 #Bottom location
+  x[338, 328] = 8 #Top right location
+  x[338, 327] = 8 #Top left location
+
+  #ID_array[339, 327] #ID = 91791
+  #ID_array[338, 328] #ID = 91592
+  #ID_array[338, 327] #ID = 91591
+
+  #spy(x [330:345, 325:340]) #15x15 array
+  #spy(x [325:350, 320:345]) #25x25 array
+  #spy(x [310:360, 310:360]) #50x50 array
+
+  return x
 end
