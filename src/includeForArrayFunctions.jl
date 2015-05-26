@@ -56,6 +56,7 @@ function habitatTypeLoop(habitat_testArray::Vector, depth_array::Array, new_arra
   return depth_array
 end
 
+
 #Checks for any depths higher than the max value in the vector
 function maxDepthCheck(depth_array::Array, indexNumber::Int)
   maxCheckRow = 1
@@ -77,6 +78,7 @@ function maxDepthCheck(depth_array::Array, indexNumber::Int)
   return depth_array
 end
 
+
 function fillFalse(boolSpawnArray::Array)
 
   for row = 1:size(boolSpawnArray)[1]
@@ -88,21 +90,21 @@ function fillFalse(boolSpawnArray::Array)
   return boolSpawnArray
 end
 
+
 function fillFalseForSpawningAreas(boolSpawnArray::Array)
   y = 195
   counter = 0
 
-  #for row = 1:(size(boolSpawnArray)[1])/3
-   # for column = 1:size(boolSpawnArray)[2]
-    #  boolSpawnArray [row, column] = false
-    #end
-  #end
-
-  #for row = 1:size(boolSpawnArray)[1]
-   # for column = 1:(size(boolSpawnArray)[2])/1.8
-    #  boolSpawnArray [row, column] = false
-    #end
-  #end
+  for row = 1:(size(boolSpawnArray)[1])
+    for column = 1:size(boolSpawnArray)[2]
+      if row < 195 || row > 415
+        boolSpawnArray [row, column] = false
+      end
+      if column < (size(boolSpawnArray)[2])/1.8 || column > 380
+        boolSpawnArray [row, column] = false
+      end
+    end
+  end
 
   for row = 195:300
     for column = convert(Int,(2/5)y+260):size(boolSpawnArray)[2]
@@ -114,8 +116,32 @@ function fillFalseForSpawningAreas(boolSpawnArray::Array)
     end
   end
 
+  for row = 350:380
+    for column = 1:size(boolSpawnArray)[2]
+      boolSpawnArray [row, column] = false
+    end
+  end
+
+  for row = 313:320
+    for column = 1:size(boolSpawnArray)[2]
+      boolSpawnArray [row, column] = false
+    end
+  end
+
+  for row = 190:201
+    for column = 318:330
+      boolSpawnArray [row, column] = false
+    end
+  end
+
+  #This section is used to generate a better image for the shape of the spawning area
+  #for column = 1:size(boolSpawnArray)[2]
+    #boolSpawnArray [1, column] = true
+  #end
+
   return(boolSpawnArray)
 end
+
 
 function highDepthIndex(habitat_testArray::Vector)
   highSpawningIndex = 1
@@ -126,6 +152,7 @@ function highDepthIndex(habitat_testArray::Vector)
 
   return highSpawningIndex-1
 end
+
 
 function lowDepthIndex(habitat_testArray::Vector)
   lowSpawningIndex = 1

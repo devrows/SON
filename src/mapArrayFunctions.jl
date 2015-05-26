@@ -82,6 +82,8 @@ function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
     end
   end
 
+  boolSpawnArray = fillFalseForSpawningAreas(boolSpawnArray)
+
   writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/booleanSpawningMap.csv", boolSpawnArray,',');
 
  return boolSpawnArray
@@ -92,16 +94,15 @@ function drawSpawningArea(fileLocation::ASCIIString, habitat_testArray::Vector)
   x = spawningArray(fileLocation, habitat_testArray)
   y = habitatTypeArray(habitat_testArray, fileLocation)
 
-  x = fillFalseForSpawningAreas(x)
-
   Gadfly.set_default_plot_size(10cm, 10cm)
 
-  spy(y)
+  habitatTypeImage = spy(y)
 
   spawnArrayImage = spy(x)
 
-  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/spawningImage.svg", 4inch, 3inch), spawnArrayImage)
-  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 4inch, 3inch), spy(y))
+  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/spawningImage.svg", 8inch, 8inch), spawnArrayImage)
+  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 8inch, 6inch), habitatTypeImage)
+
   return x
 end
 
@@ -112,7 +113,7 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
   for row = 1:(size(y)[1])
     for column = 1:(size(y)[2])
       if y [row, column] == 0
-        y [row, column] = 7
+        y [row, column] = 10
       else
         y [row, column] = 0
       end
@@ -129,5 +130,5 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
 
   Gadfly.set_default_plot_size(10cm, 10cm)
 
-  spy(y)
+  draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/shorelineWithSpawning.svg", 8inch, 6inch), spy(y))
 end
