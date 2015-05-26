@@ -9,7 +9,7 @@ fileLocation = "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1x1_D
 habitat_testArray = getindex(Int64,0,220,8,110,37,2,15)
 
 #For input file
-new_array = readdlm(fileLocation));
+new_array = readdlm(fileLocation);
 
 #for environment_assumptions
 numberedMap_array = Array(Int64, size(new_array)[1], size(new_array)[2])
