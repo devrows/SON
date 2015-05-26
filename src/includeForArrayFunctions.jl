@@ -4,13 +4,6 @@ Devin Rose
 complementary functions used by mapArrayFunctions.jl
 """
 
-#add package
-Pkg.add("Cairo")
-
-#define test variables
-using DataFrames, Distributions, Gadfly, RDatasets, Compose, Cairo
-fileLocation = "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1x1_Depth.csv"
-habitat_testArray = getindex(Int64,0,220,8,110,37,2,15)
 
 #This function gets rid of all the NaN entries and makes them zero
 function isNanLoop(depth_array::Array, new_array::Array)
@@ -34,6 +27,7 @@ function isNanLoop(depth_array::Array, new_array::Array)
 
   return depth_array
 end
+
 
 # This function assigns the values for the different habitat types
 function habitatTypeLoop(habitat_testArray::Vector, depth_array::Array, new_array::Array, lowerBound::Int, upperBound::Int, indexNumber::Int)
