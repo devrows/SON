@@ -13,10 +13,10 @@ writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/numberedMap_array.csv", 
 
 #For habitat type array
 habitatType_array = habitatTypeArray(habitat_testArray, fileLocation)
-habitatTypeImage = spy(habitatType_array)
 
 writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/habitatType_array.csv", habitatType_array,',');
-draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 8inch, 6inch), habitatTypeImage)
+draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatType.svg", 8inch, 6inch), spy(habitatType_array))
+draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/SON/Images/habitatTypeForCoolingWater_50x50.svg", 8inch, 6inch), spy(habitatType_array [310:360, 310:360]))
 
 
 #For spawning area

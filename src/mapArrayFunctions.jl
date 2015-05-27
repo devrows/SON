@@ -13,6 +13,8 @@ function makeMap(fileLocation::ASCIIString)
   column = 1
   cellNumber = 1
 
+  #new_array [330:345, 325:340]
+
   while row < size(new_array)[1]+1
     while column < size(new_array)[2]+1
       if(isnan(new_array[row,column]) == false)
@@ -20,6 +22,7 @@ function makeMap(fileLocation::ASCIIString)
         cellNumber = cellNumber + 1
       else
         numberedMap_array [row, column] = -1
+        new_array[row, column] = 0
       end
 
       column += 1
@@ -28,6 +31,8 @@ function makeMap(fileLocation::ASCIIString)
     column = 1
     row += 1
     end
+
+  spy(new_array [330:345, 325:340])
 
   return numberedMap_array
 
@@ -116,9 +121,23 @@ function coolingWaterIntakeLocation(fileLocation::ASCIIString, habitat_testArray
   boolIntakeLocation_array = Array(Bool, size(ID_array)[1], size(ID_array)[2])
   boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
 
-  boolIntakeLocation_array[339, 327] = true
-  boolIntakeLocation_array[338, 328] = true
+  boolIntakeLocation_array[336, 329] = true
+  boolIntakeLocation_array[336, 330] = true
+
+  boolIntakeLocation_array[337, 328] = true
+  boolIntakeLocation_array[337, 329] = true
+  boolIntakeLocation_array[337, 330] = true
+
+
   boolIntakeLocation_array[338, 327] = true
+  boolIntakeLocation_array[338, 328] = true
+  boolIntakeLocation_array[338, 329] = true
+
+  boolIntakeLocation_array[339, 327] = true
+  boolIntakeLocation_array[339, 328] = true
+
+  boolIntakeLocation_array[340, 328] = true
+  boolIntakeLocation_array[340, 329] = true
 
   return boolIntakeLocation_array
 end
@@ -131,9 +150,23 @@ function coolingWaterVisualization(fileLocation::ASCIIString, habitat_testArray:
   boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
 
   x[339, 329] = 4 #Bruce Power location
-  x[339, 327] = 8 #Bottom location
-  x[338, 328] = 8 #Top right location
-  x[338, 327] = 8 #Top left location
+
+  x[336, 329] = 8
+  x[336, 330] = 8
+
+  x[337, 328] = 8
+  x[337, 329] = 8
+  x[337, 330] = 8
+
+  x[338, 327] = 8
+  x[338, 328] = 8
+  x[338, 329] = 8
+
+  x[339, 327] = 8
+  x[339, 328] = 8
+
+  x[340, 328] = 8
+  x[340, 329] = 8
 
   #ID_array[339, 327] #ID = 91791
   #ID_array[338, 328] #ID = 91592
