@@ -4,6 +4,10 @@ Devin Rose
 Exports .csv files and map images generated from mapArrayFunctions.jl, for 1x1 km grid
 """
 
+#Compile insertTest1x1.jl test variables
+#Compile utilities.jl
+#Compile arrayFunctions.jl
+#Compile mapArrayFunctions1x1.jl
 
 #For identification array
 ID_array = makeMap(fileLocation)

@@ -32,7 +32,7 @@ function makeMap(fileLocation::ASCIIString)
     row += 1
     end
 
-  spy(new_array [330:345, 325:340])
+  #spy(new_array [330:345, 325:340])
 
   return numberedMap_array
 end
@@ -83,13 +83,15 @@ function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
     end
   end
 
-  #if fileLocation == 1x1 location
-    boolSpawnArray = fillFalseForSpawningAreas1x1(boolSpawnArray)
-  #end
+  spy(boolSpawnArray)
 
-  #if fileLocation == 2x2 location
-    #call fillFalseForSpawningAreas2x2
-  #end
+  if fileLocation == "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid1x1_Depth.csv"
+    boolSpawnArray = fillFalseForSpawningAreas1x1(boolSpawnArray)
+  end
+
+  if fileLocation == "/Users/devin-rose92/desktop/SONCLWRP/SON/maps/LakeHuronGrid2x2_Depth.csv"
+    boolSpawnArray = fillFalseForSpawningAreas2x2(boolSpawnArray)
+  end
 
  return boolSpawnArray
 end
@@ -109,8 +111,10 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
     end
   end
 
-  for row = 1:(size(y)[1])
-    for column = 1:(size(y)[2])
+  spy (y)
+
+  for row = 1:(size(x)[1])
+    for column = 1:(size(x)[2])
       if x [row, column] == true
         y [row, column] = 1
       end
@@ -120,8 +124,14 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
   return y
 end
 
-#for future development
-#function findIDNumber(IDarray, boolArrayToCheck)
+#=for future development
+function findIDNumber(IDarray::Array, boolArrayToCheck::Array)
 
-#return vector with contents of id numbers
-#end
+return (vector with contents of id numbers)
+end
+
+restructure file locations(separate 1x1 and 2x2)
+
+change file names for 1x1 files to be equiv with 2x2
+
+=#

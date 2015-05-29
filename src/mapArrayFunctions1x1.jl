@@ -4,7 +4,6 @@ Devin Rose
 Creates map arrays of lake huron, 1x1 km grid
 """
 
-
 #Move to mapArrayFunctions1x1
 function fillFalseForSpawningAreas1x1(boolSpawnArray::Array)
   y = 195
@@ -86,9 +85,6 @@ end
 function coolingWaterVisualization1x1(fileLocation::ASCIIString, habitat_testArray::Vector)
   ID_array = makeMap(fileLocation)
   x = shorelineWithSpawning(fileLocation, habitat_testArray)
-
-  boolIntakeLocation_array = Array(Bool, size(ID_array)[1], size(ID_array)[2])
-  boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
 
   x[339, 329] = 4 #Bruce Power location
 
