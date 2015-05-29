@@ -134,4 +134,6 @@ restructure file locations(separate 1x1 and 2x2)
 
 change file names for 1x1 files to be equiv with 2x2
 
+change all naming conventions to camelCase
+
 =#
