@@ -1,7 +1,7 @@
 """
 SON CLWRP
 Devin Rose
-Creates map arrays of lake huron
+map array functions used for both 1x1 and 2x2 km grids
 """
 
 
@@ -61,6 +61,7 @@ function habitatTypeArray(habitat_testArray::Vector, fileLocation::ASCIIString)
 end
 
 
+#creates a boolean array with true locations for the spawning areas
 function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
   habitat_testArray = sort(habitat_testArray)
   newDepth_Array = habitatTypeArray(habitat_testArray, fileLocation)
@@ -90,13 +91,10 @@ function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
     #call fillFalseForSpawningAreas2x2
   #end
 
-
-  writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/booleanSpawningMap.csv", boolSpawnArray,',');
-
  return boolSpawnArray
 end
 
-
+#Creates an array with the shoreline and the spawning locations
 function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vector)
   y = habitatTypeArray(habitat_testArray, fileLocation)
   x = spawningArray(fileLocation, habitat_testArray)
@@ -122,59 +120,8 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
   return y
 end
 
+#for future development
+#function findIDNumber(IDarray, boolArrayToCheck)
 
-function coolingWaterIntakeLocation(fileLocation::ASCIIString, habitat_testArray::Vector)
-  ID_array = makeMap(fileLocation)
-
-  boolIntakeLocation_array = Array(Bool, size(ID_array)[1], size(ID_array)[2])
-  boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
-
-  boolIntakeLocation_array[336, 329] = true
-  boolIntakeLocation_array[336, 330] = true
-
-  boolIntakeLocation_array[337, 328] = true
-  boolIntakeLocation_array[337, 329] = true
-  boolIntakeLocation_array[337, 330] = true
-
-
-  boolIntakeLocation_array[338, 327] = true
-  boolIntakeLocation_array[338, 328] = true
-  boolIntakeLocation_array[338, 329] = true
-
-  boolIntakeLocation_array[339, 327] = true
-  boolIntakeLocation_array[339, 328] = true
-
-  boolIntakeLocation_array[340, 328] = true
-  boolIntakeLocation_array[340, 329] = true
-
-  return boolIntakeLocation_array
-end
-
-
-function coolingWaterVisualization(fileLocation::ASCIIString, habitat_testArray::Vector)
-  ID_array = makeMap(fileLocation)
-  x = shorelineWithSpawning(fileLocation, habitat_testArray)
-
-  boolIntakeLocation_array = Array(Bool, size(ID_array)[1], size(ID_array)[2])
-  boolIntakeLocation_array = fillFalse(boolIntakeLocation_array)
-
-  x[339, 329] = 4 #Bruce Power location
-
-  x[336, 329:330] = 8
-  x[337, 328:330] = 8
-  x[338, 327:329] = 8
-  x[339, 327:328] = 8
-  x[340, 328:329] = 8
-
-  #ID_array[336, 329:330]
-  #ID_array[337, 328:330]
-  #ID_array[338, 327:329]
-  #ID_array[339, 327:328]
-  #ID_array[340, 328:329]
-
-  #spy(x [330:345, 325:340]) #15x15 array
-  #spy(x [325:350, 320:345]) #25x25 array
-  #spy(x [310:360, 310:360]) #50x50 array
-
-  return x
-end
+#return vector with contents of id numbers
+#end

@@ -1,7 +1,7 @@
 """
 SON CLWRP
 Devin Rose
-complementary functions used by mapArrayFunctions.jl
+complementary functions used by other .jl files
 """
 
 
@@ -82,53 +82,6 @@ function fillFalse(boolSpawnArray::Array)
   end
 
   return boolSpawnArray
-end
-
-
-function fillFalseForSpawningAreas1x1(boolSpawnArray::Array)
-  y = 195
-  counter = 0
-
-  for row = 1:(size(boolSpawnArray)[1])
-    for column = 1:size(boolSpawnArray)[2]
-      if row < 195 || row > 415
-        boolSpawnArray [row, column] = false
-      end
-      if column < (size(boolSpawnArray)[2])/1.8 || column > 380
-        boolSpawnArray [row, column] = false
-      end
-    end
-  end
-
-  for row = 195:300
-    for column = convert(Int,(2/5)y+260):size(boolSpawnArray)[2]
-      boolSpawnArray [row, column] = false
-    end
-    counter = counter + 1
-    if counter % 5 == 0
-      y = y + 5
-    end
-  end
-
-  for row = 350:380
-    for column = 1:size(boolSpawnArray)[2]
-      boolSpawnArray [row, column] = false
-    end
-  end
-
-  for row = 313:320
-    for column = 1:size(boolSpawnArray)[2]
-      boolSpawnArray [row, column] = false
-    end
-  end
-
-  for row = 190:201
-    for column = 318:330
-      boolSpawnArray [row, column] = false
-    end
-  end
-
-  return(boolSpawnArray)
 end
 
 

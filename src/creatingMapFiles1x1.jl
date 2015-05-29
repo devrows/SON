@@ -36,8 +36,8 @@ draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/Images/shorelineWithSpawning.svg"
 
 
 #For cooling water intake location
-coolingWaterIntake_array = coolingWaterIntakeLocation(fileLocation, habitat_testArray)
-coolingWaterImage_array = coolingWaterVisualization(fileLocation, habitat_testArray)
+coolingWaterIntake_array = coolingWaterIntakeLocation1x1(fileLocation, habitat_testArray)
+coolingWaterImage_array = coolingWaterVisualization1x1(fileLocation, habitat_testArray)
 
 writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/coolingWaterIntakeArray.csv", coolingWaterIntake_array,',');
 draw(SVG("/Users/devin-rose92/desktop/SONCLWRP/Images/coolingWaterIntakeLocation_15x15.svg", 8inch, 6inch), spy(coolingWaterImage_array [330:345, 325:340]))
