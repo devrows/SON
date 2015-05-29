@@ -35,7 +35,6 @@ function makeMap(fileLocation::ASCIIString)
   spy(new_array [330:345, 325:340])
 
   return numberedMap_array
-
 end
 
 
@@ -83,12 +82,20 @@ function spawningArray(fileLocation::ASCIIString, habitat_testArray::Vector)
     end
   end
 
-  boolSpawnArray = fillFalseForSpawningAreas(boolSpawnArray)
+  #if fileLocation == 1x1 location
+    boolSpawnArray = fillFalseForSpawningAreas1x1(boolSpawnArray)
+  #end
+
+  #if fileLocation == 2x2 location
+    #call fillFalseForSpawningAreas2x2
+  #end
+
 
   writedlm("/Users/devin-rose92/desktop/SONCLWRP/SON/maps/booleanSpawningMap.csv", boolSpawnArray,',');
 
  return boolSpawnArray
 end
+
 
 function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vector)
   y = habitatTypeArray(habitat_testArray, fileLocation)
@@ -114,6 +121,7 @@ function shorelineWithSpawning(fileLocation::ASCIIString, habitat_testArray::Vec
 
   return y
 end
+
 
 function coolingWaterIntakeLocation(fileLocation::ASCIIString, habitat_testArray::Vector)
   ID_array = makeMap(fileLocation)
@@ -141,6 +149,7 @@ function coolingWaterIntakeLocation(fileLocation::ASCIIString, habitat_testArray
 
   return boolIntakeLocation_array
 end
+
 
 function coolingWaterVisualization(fileLocation::ASCIIString, habitat_testArray::Vector)
   ID_array = makeMap(fileLocation)

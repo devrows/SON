@@ -85,7 +85,7 @@ function fillFalse(boolSpawnArray::Array)
 end
 
 
-function fillFalseForSpawningAreas(boolSpawnArray::Array)
+function fillFalseForSpawningAreas1x1(boolSpawnArray::Array)
   y = 195
   counter = 0
 

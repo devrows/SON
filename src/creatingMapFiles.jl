@@ -1,7 +1,7 @@
 """
 SON CLWRP
 Devin Rose
-Exports images and .csv files of maps generated from mapArrayFunctions.jl
+Exports .csv files and map images generated from mapArrayFunctions.jl, for 1x1 km grid
 """
 
 
