@@ -80,6 +80,22 @@ function coolingWaterIntakeLocation1x1(fileLocation::ASCIIString, habitat_testAr
   return boolIntakeLocation_array
 end
 
+#Creates a habitat type array with the cooling water image location marked
+function habitatTypeWithCoolingWaterIntakeLocation1x1(fileLocation::ASCIIString, habitat_testArray::Vector)
+  habitatTypeWithCoolingWater = habitatTypeArray(habitat_testArray, fileLocation)
+
+  for i = 324:351
+    habitatTypeWithCoolingWater[i,319] = 6
+    habitatTypeWithCoolingWater[i,346] = 6
+  end
+
+  for j = 319:346
+    habitatTypeWithCoolingWater[324,j] = 6
+    habitatTypeWithCoolingWater[351,j] = 6
+  end
+
+  return habitatTypeWithCoolingWater
+end
 
 #Visualization of cooling water for easy comparison with known maps
 function coolingWaterVisualization1x1(fileLocation::ASCIIString, habitat_testArray::Vector)
